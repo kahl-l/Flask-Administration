@@ -17,8 +17,10 @@ def index():
 		db.session.commit()
 		flash('Your post is now live!')
 		return redirect(url_for('index'))
-	posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.timestamp.desc()).all()
-	return render_template('index.html', title='Home', form=form, posts=posts)
+	page = request.args.get('page', 1, type=int)
+	posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.timestamp.desc()).paginate(
+		page, app.config['POSTS_PER_PAGE'], False) # or current_user.posts
+	return render_template('index.html', title='Home', form=form, posts=posts.items)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
