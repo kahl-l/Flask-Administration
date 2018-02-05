@@ -24,9 +24,6 @@ class User(UserMixin, db.Model):
 		return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
 				digest, size)
 
-	def posts(self):
-		return Post.query.filter_by(user_id=self.id).all()
-
 	def __repr__(self):
 		return '<User {}>'.format(self.username)
 

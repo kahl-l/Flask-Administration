@@ -18,8 +18,7 @@ def index():
 		flash('Your post is now live!')
 		return redirect(url_for('index'))
 
-	posts = current_user.posts()
-	return render_template('index.html', title='Home', form=form, posts=posts)
+	return render_template('index.html', title='Home', form=form, posts=current_user.posts)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
