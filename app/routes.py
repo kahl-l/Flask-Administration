@@ -107,7 +107,7 @@ def reset_password_request():
 		return redirect(url_for('login'))
 	return render_template('reset_password_request.html', title='Reset Passsword', form=form)
 
-@app.route('/reset_password/<token>', methods['GET', 'POST'])
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
 	if current_user.is_authenticated:
 		return redirect(url_for('index'))
