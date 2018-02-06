@@ -109,3 +109,4 @@ TypeError: 'author' is an invalid keyword argument for Post
 2018-02-05 14:20:41,443 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:43]
 2018-02-05 14:34:22,621 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:43]
 2018-02-05 14:39:39,810 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:43]
+2018-02-06 10:19:09,662 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:43]
