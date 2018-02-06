@@ -1,0 +1,92 @@
+2018-02-06 12:45:00,614 ERROR: Exception on /reset_password_request [POST] [in /home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/kahll/Flask-Administration/app/routes.py", line 105, in reset_password_request
+    send_password_reset_email(user)
+  File "/home/kahll/Flask-Administration/app/email.py", line 17, in send_password_reset_email
+    html_body=render_template('email/reset_password.html', user=user, token=token))
+  File "/home/kahll/Flask-Administration/app/email.py", line 9, in send_email
+    mail.send(msg)
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "/usr/lib/python3.4/smtplib.py", line 652, in login
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbtg\n5.7.14 mrudzZM1IF3PjBNvX9Al6aTRi_zO0pW2_meMhWeS6OMuPy4ExOKSre4qcNNS6ZYbn90AlV\n5.7.14 Fi6BiE5XZmCo87qkl3MXA--3OwkjL4KknMfg3QQOtnGyS1FrngPZYuiHbWH3TEjVOIrtjX\n5.7.14 fznMOOh-574W2MQWZ_307V44GRBUWhE2PZT4WRC50R3ZM8uAy5pCb9VK8jTMo5aSp5viWk\n5.7.14 KelJld-j16CxXHG3H4E4QU2nSRpik> Please log in via your web browser and\n5.7.14 then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 v5sm7424273wmb.19 - gsmtp')
+2018-02-06 12:45:47,215 ERROR: Exception on /reset_password_request [POST] [in /home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/kahll/Flask-Administration/app/routes.py", line 105, in reset_password_request
+    send_password_reset_email(user)
+  File "/home/kahll/Flask-Administration/app/email.py", line 17, in send_password_reset_email
+    html_body=render_template('email/reset_password.html', user=user, token=token))
+  File "/home/kahll/Flask-Administration/app/email.py", line 9, in send_email
+    mail.send(msg)
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "/usr/lib/python3.4/smtplib.py", line 652, in login
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbtB\n5.7.14 OYnivYYmaFkSZHkVZZl7nBwNChlGNgauPU3u4H48ht_StBPaiqCTFFpBhJ3sD55QrudxxG\n5.7.14 4O85P5IF1OtFN01nxXayKBapUkaSufG-LgVc8Ndji4-ZHwGvbHA4X6mtQ0OmhCDHu0nSPH\n5.7.14 wgIjzexyL0np-BjUqh5apaplfy_uX5htZAZq4Ut3TSf7T3IXIO3FvNIcAcMwBOCzW3JGjJ\n5.7.14 AdRADVIpRERl0tqWz6b3_q08a-9as> Please log in via your web browser and\n5.7.14 then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 h13sm17550205wrc.89 - gsmtp')
+2018-02-06 12:48:11,345 ERROR: Exception on /reset_password_request [POST] [in /home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/kahll/Flask-Administration/app/routes.py", line 105, in reset_password_request
+    send_password_reset_email(user)
+  File "/home/kahll/Flask-Administration/app/email.py", line 17, in send_password_reset_email
+    html_body=render_template('email/reset_password.html', user=user, token=token))
+  File "/home/kahll/Flask-Administration/app/email.py", line 9, in send_email
+    mail.send(msg)
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/kahll/Flask-Administration/env/lib/python3.4/site-packages/flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "/usr/lib/python3.4/smtplib.py", line 652, in login
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbse\n5.7.14 Rl60mw36gMCjq4b44zj3-O9CGuaR51L7h3eFrpKNZSQ_SeZC874hwYU9SEgjdzTIuQe7bI\n5.7.14 r1Kg5ccGs5sPeHCdP7QOmI7ifhUnR-3smPwYY7I3E8dmaNmXjXX_eTZ-biKjWgmqmcxB3_\n5.7.14 yVyBg-oB4mimdY9PbYo3MCZpdUegY2TKMZ1V9Yw7xgjrduVOoaZQCU6kWLAa038L_91KX8\n5.7.14 v4IBlXAZeAqkBlN0a-Y-wRzXzQpZQ> Please log in via your web browser and\n5.7.14 then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 h13sm17556787wrc.89 - gsmtp')
+2018-02-06 12:58:47,245 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:45]
+2018-02-06 13:02:16,126 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:45]
+2018-02-06 13:03:08,704 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:45]
+2018-02-06 13:06:06,878 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:45]
+2018-02-06 18:13:58,713 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:45]
