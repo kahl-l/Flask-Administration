@@ -9,9 +9,12 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
+from app.errors import bp as errors_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.register_blueprint(errors_bp)
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
@@ -20,7 +23,7 @@ mail = Mail(app)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 
-from app import routes, models, errors
+from app import routes, models
 
 if not app.debug:
 	if app.config['MAIL_SERVER']:
