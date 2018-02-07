@@ -28,3 +28,8 @@ Traceback (most recent call last):
     raise SMTPAuthenticationError(code, resp)
 smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbvY\n5.7.14 it22WIjS0Dc_iShVhN4ZbSFEu_QvFPCFRgI4qj0K8_pfLY1077PBNYjV_4aMe6tQ4CYa7g\n5.7.14 3TuVbSXr1KIBNr0pOudGxY4s72uoofaZJ2LpJI3l6PZU5cKZ3DhVrXE3EiISO-ejkQ8RY4\n5.7.14 YXYEHQWS9eIayV5ZSQ7-N4TCuz6nI6VCmZLVboQgzuVlTds_cjvbUJCWnB61l8zRYPZMfR\n5.7.14 oI5vUPgNVS8lYZpBrQzErz0gZ4Dhc> Please log in via your web browser and\n5.7.14 then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 b79sm6546426wmb.18 - gsmtp')
 2018-02-06 18:36:09,679 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:45]
+2018-02-06 18:54:22,757 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:47]
+2018-02-07 10:18:17,224 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:47]
+2018-02-07 12:04:46,759 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:47]
+2018-02-07 12:08:25,766 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:47]
+2018-02-07 12:19:57,085 INFO: Microblog startup [in /home/kahll/Flask-Administration/app/__init__.py:47]
