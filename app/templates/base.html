@@ -59,7 +59,7 @@
     </nav>
 {% endblock %}
 
-{% block app_content %}
+{% block content %}
 	<div class="container">
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}
@@ -94,7 +94,8 @@
                     <li><a href="">Another nav item</a></li>
                 </ul>
             </div>
-
+        </div>
+    </div>
 {% endblock %}
 
 {% block scripts %}
