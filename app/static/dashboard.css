@@ -1,3 +1,20 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {height: 550px}
 
@@ -9,5 +26,5 @@
 
 /* On small screens, set height to 'auto' for the grid */
 @media screen and (max-width: 767px) {
-  .row.content {height: auto;}
+  .row.content {height: auto;} 
 }
