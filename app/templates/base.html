@@ -60,15 +60,6 @@
 {% endblock %}
 
 {% block content %}
-	<div class="container">
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-			{% for message in messages %}
-			<div class="alert alert-info" role="alert">{{ message }}</div>
-			{% endfor %}
-		{% endif %}
-		{% endwith %}
-	</div>
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-3 col-md-2 sidenav hidden-xs">
@@ -91,9 +82,18 @@
                     <li><a href="">Another nav item</a></li>
                 </ul>
             </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-info" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% block app_content %}
+                {% endblock %}
+            </div>
         </div>
-        {% block app_content %}
-        {% endblock %}
     </div>
 {% endblock %}
 
