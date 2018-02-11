@@ -68,9 +68,6 @@
 			{% endfor %}
 		{% endif %}
 		{% endwith %}
-
-		{% block app_content %}
-		{% endblock %}
 	</div>
     <div class="container-fluid">
         <div class="row content">
@@ -95,9 +92,9 @@
                 </ul>
             </div>
         </div>
+        {% block app_content %}
+        {% endblock %}
     </div>
-
-    {% block body %}{% endblock %}
 {% endblock %}
 
 {% block scripts %}
