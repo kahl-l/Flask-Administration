@@ -20,7 +20,6 @@ body {
 
 /* Set gray background color and 100% height */
 .sidenav {
-  position: fixed;
   background-color: #f1f1f1;
   padding: 20px;
 }
