@@ -21,7 +21,7 @@ def index():
 		post = Post(body=form.post.data, author=current_user)
 		db.session.add(post)
 		db.session.commit()
-		flash('Your post is now live!')
+		flash('Your post is now live!', 'success')
 		return redirect(url_for('main.index'))
 	page = request.args.get('page', 1, type=int)
 	posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.timestamp.desc()).paginate(
@@ -45,7 +45,7 @@ def edit_profile():
 		current_user.username = form.username.data
 		current_user.about_me = form.about_me.data
 		db.session.commit()
-		flash('Your changes have been saved.')
+		flash('Your changes have been saved.', 'success')
 		return redirect(url_for('main.edit_profile'))
 	elif request.method == 'GET':
 		form.username.data = current_user.username

@@ -79,10 +79,15 @@
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                {% with messages = get_flashed_messages() %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
-                    {% for message in messages %}
-                    <div class="alert alert-info" role="alert">{{ message }}</div>
+                    {% for category, message in messages %}
+                    <div class="alert 
+                        {% if category == 'success' %}alert-success
+                        {% if category == 'warning' %}alert-warning
+                        {% if category == 'error' %}alert-danger
+                        {% else %}alert-info
+                        {% endif %}" role="alert">{{ message }}</div>
                     {% endfor %}
                 {% endif %}
                 {% endwith %}
