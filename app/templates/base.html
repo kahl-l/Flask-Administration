@@ -84,8 +84,8 @@
                     {% for category, message in messages %}
                     <div class="alert 
                         {% if category == 'success' %}alert-success
-                        {% if category == 'warning' %}alert-warning
-                        {% if category == 'error' %}alert-danger
+                        {% elseif category == 'warning' %}alert-warning
+                        {% elseif category == 'error' %}alert-danger
                         {% else %}alert-info
                         {% endif %}" role="alert">{{ message }}</div>
                     {% endfor %}
