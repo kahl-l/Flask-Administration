@@ -35,7 +35,7 @@ def index():
 @login_required
 def user(username):
 	user = User.query.filter_by(username=username).first_or_404()
-	return render_template('user.html', user=user, posts=user.posts)
+	return render_template('user.html', title="Profile", user=user, posts=user.posts)
 
 @bp.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
