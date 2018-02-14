@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	{% for post in posts %}
-	<div><p>{{ post.author.username }} says: {{ post.body }}</p></div>
+	<div><p>{{ post.author.username }} says: {{ '<br />'.join(post.body.splitlines()) }}</p></div>
 	{% endfor %}
 
 	<nav aria-label="...">
