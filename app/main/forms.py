@@ -10,7 +10,7 @@ class EditProfileForm(FlaskForm):
 	title 		= StringField('Title', validators=[DataRequired()])
 	submit 		= SubmitField('Submit')
 
-	def __init__(self, original_username, *args, **kwargs):
+	def __init__(self, *args, **kwargs):
 		super(EditProfileForm, self).__init__(*args, **kwargs)
 
 class PostForm(FlaskForm):
