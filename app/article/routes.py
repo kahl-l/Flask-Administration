@@ -5,7 +5,7 @@ from app.article 		import bp
 from app.article.forms	import AddArticleForm
 from app.models			import User, Article
 
-@bp.route('/list')
+@bp.route('/list', methods=['GET', 'POST'])
 @login_required
 def list():
 	return render_template('article/list.html', title="Articles", articles=current_user.articles)

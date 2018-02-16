@@ -89,7 +89,7 @@ def edit_profile():
 		form.title.data = current_user.title
 	return render_template('user/edit_profile.html', title='Edit Profile', form=form)
 
-@bp.route('/profile')
+@bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
 	return render_template('user/profile.html', title="Profile")
