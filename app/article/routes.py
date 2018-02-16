@@ -7,9 +7,8 @@ from app.models			import User, Article
 
 @bp.route('/list')
 @login_required
-def list(user_id):
-	user = User.query.filter_by(id=user_id).first_or_404()
-	return render_template('article/list.html', title="Articles", articles=user.articles)
+def list():
+	return render_template('article/list.html', title="Articles", articles=current_user.articles)
 
 @bp.route('/add', methods=['GET', 'POST'])
 @login_required
