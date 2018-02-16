@@ -13,7 +13,7 @@ class User(UserMixin, db.Model):
 	last_name		= db.Column(db.String(64))
 	email 			= db.Column(db.String(120), index=True, unique=True)
 	password_hash 	= db.Column(db.String(128))
-	posts 			= db.relationship('Post', backref='author', lazy='dynamic')
+	articles 		= db.relationship('Article', backref='author', lazy='dynamic')
 	title 			= db.Column(db.String(64))
 
 	def set_password(self, password):
@@ -43,14 +43,17 @@ class User(UserMixin, db.Model):
 	def __repr__(self):
 		return '<User {}>'.format(self.id)
 
-class Post(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	body = db.Column(db.String(140))
-	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+class Article(db.Model):
+	id 			= db.Column(db.Integer, primary_key=True)
+	title		= db.Column(db.String(64), unique=True)
+	summary 	= db.Column(db.String(800))
+	content 	= db.Column(db.String(4800))
+	image		= db.Column(db.String(128))
+	timestamp 	= db.Column(db.DateTime, index=True, default=datetime.utcnow)
+	user_id 	= db.Column(db.Integer, db.ForeignKey('user.id'))
 
 	def __repr__(self):
-		return '<Post {}>'.format(self.body)
+		return '<Article {}>'.format(self.id)
 
 @login.user_loader
 def load_user(id):

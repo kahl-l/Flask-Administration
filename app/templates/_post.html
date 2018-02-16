@@ -1,16 +1,16 @@
 <table class="table table-hover">
 	<tr>
 		<td width="70px">
-			<a href="{{ url_for('main.user', id=post.author.id) }}">
-				<img src="{{ post.author.avatar(70) }}" />
+			<a href="{{ url_for('main.user', id=article.author.id) }}">
+				<img src="{{ article.author.avatar(70) }}" />
 			</a>
 		</td>
 		<td>
-			<a href="{{ url_for('main.user', id=post.author.id) }}">
-				{{ post.author.first_name }} {{ post.author.last_name }}
+			<a href="{{ url_for('main.user', id=article.author.id) }}">
+				{{ article.author.first_name }} {{ article.author.last_name }}
 			</a>
-			said {{ moment(post.timestamp).fromNow() }}:<br>
-			{{ post.body }}
+			said {{ moment(article.timestamp).fromNow() }}:<br>
+			{{ article.content }}
 		</td>
 	</tr>
 </table>
