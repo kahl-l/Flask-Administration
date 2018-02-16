@@ -29,5 +29,5 @@ def delete(id):
 	article = Article.query.filter_by(id=id).first_or_404()
 	db.session.delete(article)
 	db.session.commit()
-	flash('Your article has been removes!', 'success')
+	flash('Your article has been removed!', 'success')
 	return redirect(url_for('article.list'))
