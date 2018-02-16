@@ -22,3 +22,12 @@ def add():
 		flash('Your article is now live!', 'success')
 		return redirect(url_for('article.list'))
 	return render_template('article/add.html', title='Add article', form=form)
+
+@bp.route('/delete/<id>', methods=['GET', 'POST'])
+@login_required
+def add(id):
+	article = Article.query.filter_by(id=id).first_or_404()
+	db.session.delete(article)
+	db.session.commit()
+	flash('Your article has been removes!', 'success')
+	return redirect(url_for('article.list'))
