@@ -1,9 +1,9 @@
 from flask 			import render_template, flash, redirect, url_for, request
 from werkzeug.urls 	import url_parse
-from flask_login 	import current_user, login_user, logout_user
+from flask_login 	import current_user, login_user, logout_user, login_required
 from app			import db
 from app.user 		import bp
-from app.user.forms	import LoginForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.user.forms	import LoginForm, ResetPasswordRequestForm, ResetPasswordForm, EditProfileForm
 from app.models		import User
 from app.user.email import send_password_reset_email
 
@@ -71,3 +71,26 @@ def reset_password(token):
 		flash('Your password has been reset.', 'success')
 		return redirect(url_for('user.login'))
 	return render_template('user/reset_password.html', form=form)
+
+@bp.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+	form = EditProfileForm()
+	if form.validate_on_submit():
+		current_user.first_name = form.first_name.data
+		current_user.last_name = form.last_name.data
+		current_user.title = form.title.data
+		db.session.commit()
+		flash('Your changes have been saved.', 'success')
+		return redirect(url_for('user.edit_profile'))
+	elif request.method == 'GET':
+		form.first_name.data = current_user.first_name
+		form.last_name.data = current_user.last_name
+		form.title.data = current_user.title
+	return render_template('edit_profile.html', title='Edit Profile', form=form)
+
+@bp.route('/user/<id>')
+@login_required
+def profile(id):
+	user = User.query.filter_by(id=id).first_or_404()
+	return render_template('profile.html', title="Profile", user=user)

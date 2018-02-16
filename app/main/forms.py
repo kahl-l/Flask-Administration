@@ -4,12 +4,6 @@ from wtforms 			import StringField, TextAreaField, SubmitField
 from wtforms.validators	import ValidationError, DataRequired, Length
 from app.models			import Article
 
-class EditProfileForm(FlaskForm):
-	first_name 	= StringField('First Name', validators=[DataRequired(), Length(min=1, max=64)])
-	last_name 	= StringField('Last Name', validators=[DataRequired(), Length(min=1, max=64)])
-	title 		= StringField('Title', validators=[DataRequired(), Length(min=1, max=64)])
-	submit 		= SubmitField('Submit')
-
 class ArticleForm(FlaskForm):
 	title 	= StringField('Title', validators=[DataRequired(), Length(min=1, max=64)])
 	summary = TextAreaField('Summary', validators=[DataRequired(), Length(min=1, max=800)])

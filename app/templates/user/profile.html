@@ -6,7 +6,7 @@
 			<td><h1>User: {{ user.first_name }} {{ user.last_name }}</h1>
 				{% if user.title %}<p>{{ user.title }}</p>{% endif %}
 				{% if user == current_user %}
-				<p><a href="{{ url_for('main.edit_profile') }}">Edit your profile</a></p>
+				<p><a href="{{ url_for('user.edit_profile') }}">Edit your profile</a></p>
 				{% endif %}
 			</td>
 		</tr>
