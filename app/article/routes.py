@@ -8,4 +8,4 @@ from app.models		import User, Article
 @login_required
 def list(user_id):
 	user = User.query.filter_by(id=user_id).first_or_404()
-	return render_template('article/list.html', title="Articles", user=user.articles)
+	return render_template('article/list.html', title="Articles", articles=user.articles)
