@@ -7,12 +7,10 @@
 		<div class="panel-body">
 			<table>
 				<tr valign="top">
-					<td width="140px"><img src="{{ user.avatar(128) }}"></td>
-					<td><h1>User: {{ user.first_name }} {{ user.last_name }}</h1>
-						{% if user.title %}<p>{{ user.title }}</p>{% endif %}
-						{% if user == current_user %}
-						<p><a href="{{ url_for('user.edit_profile') }}">Edit your profile</a></p>
-						{% endif %}
+					<td width="140px"><img src="{{ current_user.avatar(128) }}"></td>
+					<td><h1>User: {{ current_user.first_name }} {{ current_user.last_name }}</h1>
+						{% if current_user.title %}<p>{{ current_user.title }}</p>{% endif %}
+						<p><a href="{{ url_for('current_user.edit_profile') }}">Edit your profile</a></p>
 					</td>
 				</tr>
 			</table>

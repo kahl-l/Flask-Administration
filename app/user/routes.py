@@ -92,5 +92,4 @@ def edit_profile():
 @bp.route('/profile')
 @login_required
 def profile(id):
-	user = User.query.filter_by(id=id).first_or_404()
-	return render_template('user/profile.html', title="Profile", user=user)
+	return render_template('user/profile.html', title="Profile")
