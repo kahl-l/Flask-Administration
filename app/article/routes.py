@@ -1,5 +1,5 @@
 from flask 				import render_template
-from flask_login 		import login_required
+from flask_login 		import login_required, current_user
 from app				import db
 from app.article 		import bp
 from app.article.forms	import AddArticleForm
