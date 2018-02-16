@@ -26,8 +26,8 @@
                     {% if current_user.is_anonymous %}
                     <li class="{% if title == 'Sign In' %}active{% endif %}"><a href="{{ url_for('user.login') }}">Login</a></li>
                     {% else %}
-                    <li class="{% if title == 'Profile' %}active{% endif %}"><a href="{{ url_for('user.profile', id=current_user.id) }}">Profile</a></li>
-                    <li class="{% if title == 'Articles' %}active{% endif %}"><a href="{{ url_for('article.list', user_id=current_user.id) }}">Articles</a></li>
+                    <li class="{% if title == 'Profile' %}active{% endif %}"><a href="{{ url_for('user.profile') }}">Profile</a></li>
+                    <li class="{% if title == 'Articles' %}active{% endif %}"><a href="{{ url_for('article.list') }}">Articles</a></li>
                     <li><a href="{{ url_for('user.logout') }}">Logout</a></li>
                     {% endif %}
                 </ul>
@@ -47,8 +47,8 @@
                     {% if current_user.is_anonymous %}
                     <li class="{% if title == 'Sign In' %}active{% endif %}"><a href="{{ url_for('user.login') }}">Login</a></li>
                     {% else %}
-                    <li class="{% if title == 'Profile' %}active{% endif %}"><a href="{{ url_for('user.profile', id=current_user.id) }}">Profile</a></li>
-                    <li class="{% if title == 'Articles' %}active{% endif %}"><a href="{{ url_for('article.list', user_id=current_user.id) }}">Articles</a></li>
+                    <li class="{% if title == 'Profile' %}active{% endif %}"><a href="{{ url_for('user.profile') }}">Profile</a></li>
+                    <li class="{% if title == 'Articles' %}active{% endif %}"><a href="{{ url_for('article.list') }}">Articles</a></li>
                     <li><a href="{{ url_for('user.logout') }}">Logout</a></li>
                     {% endif %}
                 </ul>
