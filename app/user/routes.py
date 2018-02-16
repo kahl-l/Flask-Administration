@@ -2,10 +2,10 @@ from flask 			import render_template, flash, redirect, url_for, request
 from werkzeug.urls 	import url_parse
 from flask_login 	import current_user, login_user, logout_user
 from app			import db
-from app.auth 		import bp
-from app.auth.forms	import LoginForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.user 		import bp
+from app.user.forms	import LoginForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.models		import User
-from app.auth.email import send_password_reset_email
+from app.user.email import send_password_reset_email
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -16,13 +16,13 @@ def login():
 		user = User.query.filter_by(email=form.email.data).first()
 		if user is None or not user.check_password(form.password.data):
 			flash('Invalid email or password', 'error')
-			return redirect(url_for('auth.login'))
+			return redirect(url_for('user.login'))
 		login_user(user, remember=form.remember_me.data)
 		next_page = request.args.get('next')
 		if not next_page or url_parse(next_page).netloc != '':
 			next_page = url_for('main.index')
 		return redirect(next_page)
-	return render_template('auth/login.html', title='Sign In', form=form)
+	return render_template('user/login.html', title='Sign In', form=form)
 
 @bp.route('/logout')
 def logout():
@@ -41,8 +41,8 @@ def logout():
 # 		db.session.add(user)
 # 		db.session.commit()
 # 		flash('Congratulations, you are now a registered user!', 'success')
-# 		return redirect(url_for('auth.login'))
-# 	return render_template('auth/register.html', title='Register', form=form)
+# 		return redirect(url_for('user.login'))
+# 	return render_template('user/register.html', title='Register', form=form)
 
 @bp.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
@@ -54,8 +54,8 @@ def reset_password_request():
 		if user:
 			send_password_reset_email(user)
 		flash('Check your email for the instructions to reset your password')
-		return redirect(url_for('auth.login'))
-	return render_template('auth/reset_password_request.html', title='Reset Passsword', form=form)
+		return redirect(url_for('user.login'))
+	return render_template('user/reset_password_request.html', title='Reset Passsword', form=form)
 
 @bp.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
@@ -69,5 +69,5 @@ def reset_password(token):
 		user.set_password(form.password.data)
 		db.session.commit()
 		flash('Your password has been reset.', 'success')
-		return redirect(url_for('auth.login'))
-	return render_template('auth/reset_password.html', form=form)
+		return redirect(url_for('user.login'))
+	return render_template('user/reset_password.html', form=form)
