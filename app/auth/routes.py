@@ -3,7 +3,7 @@ from werkzeug.urls 	import url_parse
 from flask_login 	import current_user, login_user, logout_user
 from app			import db
 from app.auth 		import bp
-from app.auth.forms	import LoginForm, ResetPasswordRequestForm, ResetPasswordForm, RegistrationForm
+from app.auth.forms	import LoginForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.models		import User
 from app.auth.email import send_password_reset_email
 
@@ -29,20 +29,20 @@ def logout():
 	logout_user()
 	return redirect(url_for('main.index'))
 
-@bp.route('/register', methods=['GET', 'POST'])
-def register():
-	if current_user.is_authenticated:
-		return redirect(url_for('main.index'))
-	form = RegistrationForm()
-	if form.validate_on_submit():
-		user = User(first_name=form.first_name.data, last_name=form.last_name.data,
-			email=form.email.data, title=form.title.data)
-		user.set_password(form.password.data)
-		db.session.add(user)
-		db.session.commit()
-		flash('Congratulations, you are now a registered user!', 'success')
-		return redirect(url_for('auth.login'))
-	return render_template('auth/register.html', title='Register', form=form)
+# @bp.route('/register', methods=['GET', 'POST'])
+# def register():
+# 	if current_user.is_authenticated:
+# 		return redirect(url_for('main.index'))
+# 	form = RegistrationForm()
+# 	if form.validate_on_submit():
+# 		user = User(first_name=form.first_name.data, last_name=form.last_name.data,
+# 			email=form.email.data, title=form.title.data)
+# 		user.set_password(form.password.data)
+# 		db.session.add(user)
+# 		db.session.commit()
+# 		flash('Congratulations, you are now a registered user!', 'success')
+# 		return redirect(url_for('auth.login'))
+# 	return render_template('auth/register.html', title='Register', form=form)
 
 @bp.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
