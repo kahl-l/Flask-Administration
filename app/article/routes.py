@@ -25,7 +25,7 @@ def add():
 
 @bp.route('/delete/<id>', methods=['GET', 'POST'])
 @login_required
-def add(id):
+def delete(id):
 	article = Article.query.filter_by(id=id).first_or_404()
 	db.session.delete(article)
 	db.session.commit()
