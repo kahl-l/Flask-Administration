@@ -3,7 +3,7 @@
 	<td>{{ article.title }}</td>
 	<td>{{ moment(article.timestamp).fromNow() }}</td>
 	<td>
-		<a type="button" class="btn btn-link">Edit</a>
-		<a type="button" class="btn btn-link" href="{{ url_for('article.delete', id=article.id) }}">Delete</a>
+		<a>Edit</a>
+		<a href="{{ url_for('article.delete', id=article.id) }}">Delete</a>
 	</td>
 </tr>
