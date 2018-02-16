@@ -91,5 +91,5 @@ def edit_profile():
 
 @bp.route('/profile')
 @login_required
-def profile(id):
+def profile():
 	return render_template('user/profile.html', title="Profile")
