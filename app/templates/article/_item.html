@@ -2,6 +2,6 @@
 	<td>{{ article.id }}</td>
 	<td>{{ article.title }}</td>
 	<td>{{ moment(article.timestamp).fromNow() }}</td>
-	<td><a>Edit</a></td>
+	<td><a href="{{ url_for('article.edit', id=article.id) }}">Edit</a></td>
 	<td><a href="{{ url_for('article.delete', id=article.id) }}">Delete</a></td>
 </tr>

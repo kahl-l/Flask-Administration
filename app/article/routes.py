@@ -31,3 +31,21 @@ def delete(id):
 	db.session.commit()
 	flash('Your article has been removed!', 'success')
 	return redirect(url_for('article.list'))
+
+
+@bp.route('/edit/<id>', methods=['GET', 'POST'])
+@login_required
+def edit():
+	form = AddArticleForm()
+	if form.validate_on_submit():
+		article.title = form.title.data
+		article.summary = form.summary.data
+		article.content = form.content.data
+		db.session.commit()
+		flash('Your changes have been saved.', 'success')
+		return redirect(url_for('article.list'))
+	elif request.method == 'GET':
+		form.title.data = article.title
+		form.summary.data = article.summary
+		form.content.data = article.content
+	return render_template('article/edit.html', title='Edit article', form=form)

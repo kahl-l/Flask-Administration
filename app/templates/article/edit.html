@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Edit article</h3>
+		</div>
+		<div class="panel-body">
+			{{ wtf.quick_form(form) }}
+			<br />
+			<a type="button" class="btn btn-danger" href="{{ url_for('article.list') }}">Cancel</a>
+			<h4><span class="label label-primary">Conseils:</span></h4>
+			<p>- La taille de l'image doit être exactement 200x100 pixels pour un affichage optimal </p>
+			<p>- Utilisez les balises [B]Votre texte[/B] pour afficher le texte en gras</p>
+			<p>- Utilisez les balises [I]Votre texte[/I] pour afficher le texte en italique</p>
+			<p>- Utilisez les balises [U]Votre texte[/U] pour souligner le texte</p>
+			<p>- Utilisez les balises [C]Votre texte[/C] pour centrer le texte</p>
+		</div>
+	</div>
+{% endblock %}
