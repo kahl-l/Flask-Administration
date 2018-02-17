@@ -35,7 +35,8 @@ def delete(id):
 
 @bp.route('/edit/<id>', methods=['GET', 'POST'])
 @login_required
-def edit():
+def edit(id):
+	article = Article.query.filter_by(id=id).first_or_404()
 	form = AddArticleForm()
 	if form.validate_on_submit():
 		article.title = form.title.data
