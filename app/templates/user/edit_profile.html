@@ -8,6 +8,8 @@
 		</div>
 		<div class="panel-body">
 			{{ wtf.quick_form(form) }}
+			<br />
+			<a type="button" class="btn btn-danger" href="{{ url_for('user.profile') }}">Cancel</a>
 		</div>
 	</div>
 {% endblock %}
