@@ -7,7 +7,7 @@
 			<h3 class="panel-title">Edit article</h3>
 		</div>
 		<div class="panel-body">
-			<img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" style="width: 200px; height: 200px;" src="" data-holder-rendered="true">
+			<img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" style="width: 200px; height: 200px;" src="{{url_for('static', filename='images/tattoo_flower.jpg')}}" data-holder-rendered="true">
 			{{ wtf.quick_form(form) }}
 			<br />
 			<a type="button" class="btn btn-danger" href="{{ url_for('article.list') }}">Cancel</a>
