@@ -32,7 +32,7 @@ def add():
 @login_required
 def delete(id):
 	article = Article.query.filter_by(id=id).first_or_404()
-	if article.image is not None;:
+	if article.image is not None:
 		os.remove(os.path.join(current_app.root_path, 'static/images', article.image))
 	db.session.delete(article)
 	db.session.commit()
