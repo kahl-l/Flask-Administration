@@ -24,7 +24,7 @@ class EditArticleForm(FlaskForm):
 	submit 	= SubmitField('Submit')
 
 	def __init__(self, original_title, *args, **kwargs):
-		super(EditProfileForm, self).__init__(*args, **kwargs)
+		super(EditArticleForm, self).__init__(*args, **kwargs)
 		self.original_title = original_title
 
 	def validate_title(self, title):
