@@ -16,7 +16,7 @@ class AddArticleForm(FlaskForm):
 		if article is not None:
 			raise ValidationError('Please use a different title.')
 
-class AddArticleForm(FlaskForm):
+class EditArticleForm(FlaskForm):
 	title 	= StringField('Title', validators=[DataRequired(), Length(min=1, max=64)])
 	summary = TextAreaField('Summary', validators=[DataRequired(), Length(min=1, max=800)])
 	content = TextAreaField('Content', validators=[DataRequired(), Length(min=1, max=4800)])
