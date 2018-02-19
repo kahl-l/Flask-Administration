@@ -1,9 +1,10 @@
-from flask 				import render_template, flash, redirect, url_for, request
+from flask 				import render_template, flash, redirect, url_for, request, current_app
 from flask_login 		import login_required, current_user
 from app				import db
 from app.article 		import bp
 from app.article.forms	import AddArticleForm
 from app.models			import User, Article
+from werkzeug.utils		import secure_filename
 
 @bp.route('/list')
 @login_required
@@ -15,8 +16,11 @@ def list():
 def add():
 	form = AddArticleForm()
 	if form.validate_on_submit():
+		image = form.image.data
+		filename = secure_filename(image.filename)
+		image.save(os.path.join(current_app.instance_path, 'static/images', filename))
 		article = Article(title=form.title.data, summary=form.summary.data,
-			content=form.content.data, author=current_user)
+			content=form.content.data, image=filename, author=current_user)
 		db.session.add(article)
 		db.session.commit()
 		flash('Your article is now live!', 'success')
