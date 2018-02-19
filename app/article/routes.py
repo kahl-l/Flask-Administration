@@ -63,4 +63,4 @@ def edit(id):
 		form.title.data = article.title
 		form.summary.data = article.summary
 		form.content.data = article.content
-	return render_template('article/edit.html', title='Edit article', form=form)
+	return render_template('article/edit.html', title='Edit article', form=form, article=article)
