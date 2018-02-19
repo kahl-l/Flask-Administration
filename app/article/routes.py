@@ -43,7 +43,7 @@ def delete(id):
 @login_required
 def edit(id):
 	article = Article.query.filter_by(id=id).first_or_404()
-	form = EditArticleForm()
+	form = EditArticleForm(article.title)
 	if form.validate_on_submit():
 		article.title = form.title.data
 		article.summary = form.summary.data
