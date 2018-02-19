@@ -3,7 +3,7 @@ from flask 				import render_template, flash, redirect, url_for, request, curren
 from flask_login 		import login_required, current_user
 from app				import db
 from app.article 		import bp
-from app.article.forms	import AddArticleForm
+from app.article.forms	import AddArticleForm, EditArticleForm
 from app.models			import User, Article
 from werkzeug.utils		import secure_filename
 
@@ -43,18 +43,19 @@ def delete(id):
 @login_required
 def edit(id):
 	article = Article.query.filter_by(id=id).first_or_404()
-	form = AddArticleForm()
+	form = EditArticleForm()
 	if form.validate_on_submit():
-		os.remove(os.path.join(current_app.root_path, 'static/images', article.image))
 		article.title = form.title.data
 		article.summary = form.summary.data
 		article.content = form.content.data
 
 		image = form.image.data
-		filename = secure_filename(image.filename)
-		image.save(os.path.join(current_app.root_path, 'static/images', filename))
-		article.image = filename
-
+		if image is not None:
+			filename = secure_filename(image.filename)
+			if filename != article.image:
+				os.remove(os.path.join(current_app.root_path, 'static/images', article.image))
+				image.save(os.path.join(current_app.root_path, 'static/images', filename))
+				article.image = filename
 		db.session.commit()
 		flash('Your changes have been saved.', 'success')
 		return redirect(url_for('article.list'))
@@ -62,5 +63,4 @@ def edit(id):
 		form.title.data = article.title
 		form.summary.data = article.summary
 		form.content.data = article.content
-		form.image.filename = article.image
 	return render_template('article/edit.html', title='Edit article', form=form)

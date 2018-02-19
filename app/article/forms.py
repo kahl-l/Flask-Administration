@@ -15,3 +15,16 @@ class AddArticleForm(FlaskForm):
 		article = Article.query.filter_by(title=title.data).first()
 		if article is not None:
 			raise ValidationError('Please use a different title.')
+
+class AddArticleForm(FlaskForm):
+	title 	= StringField('Title', validators=[DataRequired(), Length(min=1, max=64)])
+	summary = TextAreaField('Summary', validators=[DataRequired(), Length(min=1, max=800)])
+	content = TextAreaField('Content', validators=[DataRequired(), Length(min=1, max=4800)])
+	image	= FileField('Image', validators=[FileAllowed(['jpg', 'jpeg', 'png'], 'Types allowed: JPG and PNG')])
+	submit 	= SubmitField('Submit')
+
+	def validate_title(self, title):
+		if title != self.title:
+			article = Article.query.filter_by(title=title.data).first()
+			if article is not None:
+				raise ValidationError('Please use a different title.')
