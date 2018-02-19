@@ -29,7 +29,7 @@ class EditArticleForm(FlaskForm):
 		self.original_title = original_title
 
 	def validate_title(self, title):
-		flash(self.original_title)
+		flash(self.original_title + " / " + title)
 		if title != self.original_title:
 			article = Article.query.filter_by(title=title.data).first()
 			if article is not None:
