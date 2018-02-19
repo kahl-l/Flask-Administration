@@ -19,7 +19,7 @@ def add():
 	if form.validate_on_submit():
 		image = form.image.data
 		filename = secure_filename(image.filename)
-		image.save(os.path.join(current_app.instance_path, 'static/images', filename))
+		image.save(os.path.join(current_app.root_path, 'static/images', filename))
 		article = Article(title=form.title.data, summary=form.summary.data,
 			content=form.content.data, image=filename, author=current_user)
 		db.session.add(article)
