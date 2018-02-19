@@ -8,6 +8,7 @@
 		</div>
 		<div class="panel-body">
 			<img class="img-thumbnail" src="{{url_for('static', filename='images/' + article.image )}}" data-holder-rendered="true">
+			<br />
 			{{ wtf.quick_form(form) }}
 			<br />
 			<a type="button" class="btn btn-danger" href="{{ url_for('article.list') }}">Cancel</a>
