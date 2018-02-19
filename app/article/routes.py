@@ -45,9 +45,16 @@ def edit(id):
 	article = Article.query.filter_by(id=id).first_or_404()
 	form = AddArticleForm()
 	if form.validate_on_submit():
+		os.remove(os.path.join(current_app.root_path, 'static/images', article.image))
 		article.title = form.title.data
 		article.summary = form.summary.data
 		article.content = form.content.data
+
+		image = form.image.data
+		filename = secure_filename(image.filename)
+		image.save(os.path.join(current_app.root_path, 'static/images', filename))
+		article.image = filename
+
 		db.session.commit()
 		flash('Your changes have been saved.', 'success')
 		return redirect(url_for('article.list'))
@@ -55,4 +62,5 @@ def edit(id):
 		form.title.data = article.title
 		form.summary.data = article.summary
 		form.content.data = article.content
+		form.image.filename = article.image
 	return render_template('article/edit.html', title='Edit article', form=form)
