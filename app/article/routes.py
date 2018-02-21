@@ -3,7 +3,7 @@ from flask 				import render_template, flash, redirect, url_for, request, curren
 from flask_login 		import login_required, current_user
 from app				import db
 from app.article 		import bp
-from app.article.forms	import AddArticleForm, EditArticleForm, AddImageForm
+from app.article.forms	import AddArticleForm, EditArticleForm, AddImageForm, DeleteImageForm
 from app.models			import User, Article, Image
 from werkzeug.utils		import secure_filename
 
@@ -71,6 +71,8 @@ def edit(id):
 def images():
 	images = Image.query.all()
 	form = AddImageForm()
+	form2 = DeleteImageForm()
+	form2.image.choices = [(row.ID, row.Name) for row in Image.query.all()]
 	if form.validate_on_submit():
 		image = form.image.data
 		filename = secure_filename(image.filename)
@@ -80,4 +82,4 @@ def images():
 		db.session.commit()
 		flash('Your image has been uploaded!', 'success')
 		return redirect(url_for('article.images'))
-	return render_template('article/images.html', title="Images", images=images, form=form)
+	return render_template('article/images.html', title="Images", images=images, form=form, form2=form2)
