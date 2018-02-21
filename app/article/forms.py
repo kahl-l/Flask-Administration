@@ -2,7 +2,7 @@ from flask_wtf 			import FlaskForm
 from flask_wtf.file 	import FileField, FileRequired, FileAllowed
 from wtforms 			import StringField, TextAreaField, SubmitField
 from wtforms.validators	import ValidationError, DataRequired, Length
-from app.models			import Article, Image
+from app.models			import Article
 
 class AddArticleForm(FlaskForm):
 	title 	= StringField('Title', validators=[DataRequired(), Length(min=1, max=64)])

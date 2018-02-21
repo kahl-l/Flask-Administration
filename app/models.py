@@ -56,11 +56,11 @@ class Article(db.Model):
 		return '<Article {}>'.format(self.id)
 
 class Image(db.Model):
-	id 			= db.Column(db.Integer, primary_key=True)
-	name 		= db.Column(db.String(128))
+	id 		= db.Column(db.Integer, primary_key=True)
+	name 	= db.Column(db.String(128))
 
 	def __repr__(self):
-		return '<Image {}'.format(self.id)
+		return '<Image {}>'.format(self.id)
 
 @login.user_loader
 def load_user(id):
