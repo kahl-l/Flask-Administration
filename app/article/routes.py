@@ -3,8 +3,8 @@ from flask 				import render_template, flash, redirect, url_for, request, curren
 from flask_login 		import login_required, current_user
 from app				import db
 from app.article 		import bp
-from app.article.forms	import AddArticleForm, EditArticleForm
-from app.models			import User, Article
+from app.article.forms	import AddArticleForm, EditArticleForm, AddImageForm
+from app.models			import User, Article, Image
 from werkzeug.utils		import secure_filename
 
 @bp.route('/list')
@@ -65,3 +65,19 @@ def edit(id):
 		form.summary.data = article.summary
 		form.content.data = article.content
 	return render_template('article/edit.html', title='Edit article', form=form, article=article)
+
+@bp.route('/images', methods=['GET', 'POST'])
+@login_required
+def images():
+	images = Image.query.all()
+	form = AddImageForm()
+	if form.validate_on_submit():
+		image = form.image.data
+		filename = secure_filename(image.filename)
+		image.save(os.path.join(current_app.root_path, 'static/images/', filename))
+		image = Image(name=filename)
+		db.session.add(image)
+		db.session.commit()
+		flash('Your image has been uploaded!', 'success')
+		return redirect(url_for('article.images'))
+	return render_template('article/images.html', title="Images", images=images, form=form)

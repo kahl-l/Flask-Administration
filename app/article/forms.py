@@ -2,7 +2,7 @@ from flask_wtf 			import FlaskForm
 from flask_wtf.file 	import FileField, FileRequired, FileAllowed
 from wtforms 			import StringField, TextAreaField, SubmitField
 from wtforms.validators	import ValidationError, DataRequired, Length
-from app.models			import Article
+from app.models			import Article, Image
 
 class AddArticleForm(FlaskForm):
 	title 	= StringField('Title', validators=[DataRequired(), Length(min=1, max=64)])
@@ -32,3 +32,7 @@ class EditArticleForm(FlaskForm):
 			article = Article.query.filter_by(title=title.data).first()
 			if article is not None:
 				raise ValidationError('Please use a different title.')
+
+class AddImageForm(FlaskForm):
+	image	= FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'], 'Types allowed: JPG and PNG')])
+	submit 	= SubmitField('Submit')
