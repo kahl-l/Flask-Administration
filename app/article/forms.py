@@ -37,6 +37,6 @@ class AddImageForm(FlaskForm):
 	image	= FileField('Image', validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'], 'Types allowed: JPG and PNG')])
 	submit 	= SubmitField('Submit')
 
- class DeleteImageForm(FlaskForm):
- 	image 	= SelectField('Images:', validators=[DataRequired()])
- 	submit 	= SubmitField('Delete')
+class DeleteImageForm(FlaskForm):
+	image 	= SelectField('Images:', validators=[DataRequired()])
+	submit 	= SubmitField('Delete')
