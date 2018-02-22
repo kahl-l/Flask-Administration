@@ -69,7 +69,6 @@ def edit(id):
 @bp.route('/images', methods=['GET', 'POST'])
 @login_required
 def images():
-	images = Image.query.all()
 	form = AddImageForm()
 	form2 = DeleteImageForm()
 	form2.image.choices = [(str(row.id), "#" + str(row.id) + " " + row.name) for row in Image.query.all()]
@@ -83,10 +82,10 @@ def images():
 		flash('Your image has been uploaded!', 'success')
 		return redirect(url_for('article.images'))
 	if form2.validate_on_submit():
-		flash(form2.image.data, 'success')
 		image = Image.query.filter_by(id=form2.image.data).first_or_404()
 		os.remove(os.path.join(current_app.root_path, 'static/images', image.name))
 		db.session.delete(image)
+		db.session.commit()
 		flash('Your changes have been saved.', 'success')
 		return redirect(url_for('article.images'))
-	return render_template('article/images.html', title="Images", images=images, form=form, form2=form2)
+	return render_template('article/images.html', title="Images", form=form, form2=form2)
