@@ -72,7 +72,7 @@ def images():
 	images = Image.query.all()
 	form = AddImageForm()
 	form2 = DeleteImageForm()
-	form2.image.choices = [(row.id, row.name) for row in Image.query.all()]
+	form2.image.choices = [(str(row.id), "#" + str(row.id) + " " + row.name) for row in Image.query.all()]
 	if form.image.data is not None and form.validate_on_submit():
 		image = form.image.data
 		filename = secure_filename(image.filename)
