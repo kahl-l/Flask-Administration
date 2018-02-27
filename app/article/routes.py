@@ -3,7 +3,7 @@ from flask 				import render_template, flash, redirect, url_for, request, curren
 from flask_login 		import login_required, current_user
 from app				import db
 from app.article 		import bp
-from app.article.forms	import AddArticleForm, EditArticleForm, AddImageForm, DeleteImageForm
+from app.article.forms	import AddArticleForm, EditArticleForm, AddImageForm, DeleteImageForm, DisplayImageForm
 from app.models			import User, Article, Image
 from werkzeug.utils		import secure_filename
 
@@ -16,6 +16,8 @@ def list():
 @login_required
 def add():
 	form = AddArticleForm()
+	form2 = DisplayImageForm()
+	form2.image.choices = [(str(row.id), "#" + str(row.id) + " " + row.name) for row in Image.query.all()]
 	if form.validate_on_submit():
 		image = form.image.data
 		filename = secure_filename(image.filename)
@@ -26,7 +28,7 @@ def add():
 		db.session.commit()
 		flash('Your article is now live!', 'success')
 		return redirect(url_for('article.list'))
-	return render_template('article/add.html', title='Add article', form=form)
+	return render_template('article/add.html', title='Add article', form=form, form2=form2)
 
 @bp.route('/delete/<id>', methods=['GET', 'POST'])
 @login_required
@@ -45,6 +47,8 @@ def delete(id):
 def edit(id):
 	article = Article.query.filter_by(id=id).first_or_404()
 	form = EditArticleForm(article.title)
+	form2 = DisplayImageForm()
+	form2.image.choices = [(str(row.id), "#" + str(row.id) + " " + row.name) for row in Image.query.all()]
 	if form.validate_on_submit():
 		article.title = form.title.data
 		article.summary = form.summary.data
@@ -64,7 +68,7 @@ def edit(id):
 		form.title.data = article.title
 		form.summary.data = article.summary
 		form.content.data = article.content
-	return render_template('article/edit.html', title='Edit article', form=form, article=article)
+	return render_template('article/edit.html', title='Edit article', form=form, form2=form2, article=article)
 
 @bp.route('/images', methods=['GET', 'POST'])
 @login_required

@@ -40,3 +40,6 @@ class AddImageForm(FlaskForm):
 class DeleteImageForm(FlaskForm):
 	image 	= SelectField('Images:', validators=[DataRequired()])
 	submit 	= SubmitField('Delete')
+
+class DisplayImageForm(FlaskForm):
+	image 	= SelectField('Images:')
