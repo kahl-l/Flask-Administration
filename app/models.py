@@ -62,6 +62,13 @@ class Image(db.Model):
 	def __repr__(self):
 		return '<Image {}>'.format(self.id)
 
+class Carousel(db.Model):
+	id 		= db.Column(db.Integer, primary_key=True)
+	name 	= db.Column(db.String(128))
+
+	def __repr__(self):
+		return '<Carousel {}>'.format(self.id)
+
 @login.user_loader
 def load_user(id):
 	return User.query.get(int(id))

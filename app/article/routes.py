@@ -4,7 +4,7 @@ from flask_login 		import login_required, current_user
 from app				import db
 from app.article 		import bp
 from app.article.forms	import AddArticleForm, EditArticleForm, AddImageForm, DeleteImageForm, DisplayImageForm
-from app.models			import User, Article, Image
+from app.models			import User, Article, Image, Carousel
 from werkzeug.utils		import secure_filename
 
 @bp.route('/list')
@@ -93,3 +93,27 @@ def images():
 		flash('Your changes have been saved.', 'success')
 		return redirect(url_for('article.images'))
 	return render_template('article/images.html', title="Images", form=form, form2=form2)
+
+@bp.route('/carousel', methods=['GET', 'POST'])
+@login_required
+def carousel():
+	form = AddImageForm()
+	form2 = DeleteImageForm()
+	form2.image.choices = [(str(row.id), "#" + str(row.id) + " " + row.name) for row in Carousel.query.all()]
+	if form.image.data is not None and form.validate_on_submit():
+		image = form.image.data
+		filename = secure_filename(image.filename)
+		image.save(os.path.join(current_app.root_path, 'static/images/carousel/', filename))
+		image = Carousel(name=filename)
+		db.session.add(image)
+		db.session.commit()
+		flash('Your image has been uploaded!', 'success')
+		return redirect(url_for('article.carousel'))
+	elif form2.validate_on_submit():
+		image = Carousel.query.filter_by(id=form2.image.data).first_or_404()
+		os.remove(os.path.join(current_app.root_path, 'static/images/carousel', image.name))
+		db.session.delete(image)
+		db.session.commit()
+		flash('Your changes have been saved.', 'success')
+		return redirect(url_for('article.carousel'))
+	return render_template('article/carousel.html', title="Carousel", form=form, form2=form2)

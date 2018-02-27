@@ -29,6 +29,7 @@
                     <li class="{% if title == 'Profile' %}active{% endif %}"><a href="{{ url_for('user.profile') }}">Profile</a></li>
                     <li class="{% if title == 'Articles' %}active{% endif %}"><a href="{{ url_for('article.list') }}">Articles</a></li>
                     <li class="{% if title == 'Images' %}active{% endif %}"><a href="{{ url_for('article.images') }}">Images</a></li>
+                    <li class="{% if title == 'Carousel' %}active{% endif %}"><a href="{{ url_for('article.carousel') }}">Carousel</a></li>
                     <li><a href="{{ url_for('user.logout') }}">Logout</a></li>
                     {% endif %}
                 </ul>
@@ -51,6 +52,7 @@
                     <li class="{% if title == 'Profile' %}active{% endif %}"><a href="{{ url_for('user.profile') }}">Profile</a></li>
                     <li class="{% if title == 'Articles' %}active{% endif %}"><a href="{{ url_for('article.list') }}">Articles</a></li>
                     <li class="{% if title == 'Images' %}active{% endif %}"><a href="{{ url_for('article.images') }}">Images</a></li>
+                    <li class="{% if title == 'Carousel' %}active{% endif %}"><a href="{{ url_for('article.carousel') }}">Carousel</a></li>
                     <li><a href="{{ url_for('user.logout') }}">Logout</a></li>
                     {% endif %}
                 </ul>
