@@ -100,6 +100,7 @@ def carousel():
 	form = AddImageForm()
 	form2 = DeleteImageForm()
 	form2.image.choices = [(str(row.id), "#" + str(row.id) + " " + row.name) for row in Carousel.query.all()]
+	carousel = Carousel.query.all()
 	if form.image.data is not None and form.validate_on_submit():
 		image = form.image.data
 		filename = secure_filename(image.filename)
@@ -116,4 +117,4 @@ def carousel():
 		db.session.commit()
 		flash('Your changes have been saved.', 'success')
 		return redirect(url_for('article.carousel'))
-	return render_template('article/carousel.html', title="Carousel", form=form, form2=form2)
+	return render_template('article/carousel.html', title="Carousel", form=form, form2=form2, carousel=carousel)
