@@ -22,7 +22,7 @@
 				{% if carousel %}
 					{% for image in carousel %}
 						<div class="item {% if image.id == 1 %}active{% endif %}">
-							<img src="{{url_for('static/images/carousel', filename=image.name)}}" alt="">
+							<img src="{{url_for('static', filename='/images/carousel/' + image.name)}}" alt="">
 						</div>
 					{% endfor %}
 				{% endif %}
